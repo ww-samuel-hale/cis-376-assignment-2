@@ -26,7 +26,7 @@ app.get('/tweets', (req, res) => {
     let tweets = data.map(tweet => {
         return { created_at: tweet.created_at, id: tweet.id, text: tweet.text };
     });
-    // send the tweets as a JSON response
+    // Return all of the tweets
     res.json(tweets);
 });
 
@@ -39,6 +39,7 @@ app.get('/links', (req, res) => {
             links.push({ id: tweet.id, links: tweetLinks });
         }
     });
+    // Return the list of links
     res.json(links);
 });
 
@@ -48,6 +49,7 @@ app.get('/tweet/:id', (req, res) => {
     let tweet = data.find(tweet => String(tweet.id) === req.params.id);
     // grab created_at, text, and user.screen_name from the tweet
     tweet = { created_at: tweet.created_at, text: tweet.text, screen_name: tweet.user.screen_name };
+    // Return the tweet details
     res.json(tweet);
 });
 
